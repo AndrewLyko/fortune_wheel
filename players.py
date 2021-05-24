@@ -32,4 +32,19 @@ def update_score(amount):
         active_player["score"] = 0
 
 
+def next_player():
+    active_player = get_active_player()
+    active_player_idx = players.index(active_player)
+
+    next_player_idx = (active_player_idx + 1) % len(players)
+
+    active_player["is_active"] = False
+    players[next_player_idx]["is_active"] = True
+
+
+def get_winner():
+    high_score = max([player["score"] for player in players])
+
+    return [player for player in players if player["score"] == high_score]
+
 
